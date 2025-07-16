@@ -1,86 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
-   <style>
-      table{
-         border-collapse: collapse;
-      }
-      td{
-         border: 1px solid #ddd;
-         padding: 12px;
-      }
-   </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2? 
+    family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" 
+    rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Rabeya Portfolio</title>
 </head>
-<body style="margin-left:10px;font-size:40px">
+<body>
+<?php include_once "top-container.php" ?>
+<?php include_once "container.php" ?>
+<?php require_once "specializing.php" ?>
 
-<!-- <table>
-   <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-   </tr>
-   <tr>
-      <td>4</td>
-      <td>5</td>
-      <td>6</td>
-   </tr>
-   <tr>
-      <td>7</td>
-      <td>8</td>
-      <td>9</td>
-   </tr>
-</table> -->
-<!-- 
-<table>
-   <?php for( $i = 1 ; $i <=5 ; $i++ ): ?>
-      <tr>
-         <?php for( $j = 1; $j <= 5 ; $j++ ): ?>
-         <td> <?php echo $i * $j ?> </td>
-         <?php endfor; ?>
-      </tr>
-   <?php endfor; ?>
-   
-</table> -->
+<?php include "footer.php" ?>
 
-<!-- 
-<table>
-   <?php for( $i = 1 ; $i <=10 ; $i++ ): ?>
-      <tr>
-         <?php for( $j = 1; $j <= 10 ; $j++ ): ?>
-         <td> <?php echo $i * $j ?> </td>
-         <?php endfor; ?>
-      </tr>
-   <?php endfor; ?>
-   
-</table> -->
-
-
-<table>
-   <?php for( $i = 1 ; $i <=15 ; $i++ ): ?>
-      <tr>
-         <?php for( $j = 1; $j <= 15 ; $j++ ): ?>
-         <td> <?php echo $i * $j ?> </td>
-         <?php endfor; ?>
-      </tr>
-   <?php endfor; ?>
-   
-</table>
-
-<!-- <ul>
-   <li>Apple</li>
-   <li>Banana</li>
-   <li>Orange</li>
-</ul> -->
-   
-<?php $fruits = ["Apple", "Banana", "Orange", "Jackfruit" ];?>
-<ul>
-   <?php foreach ( $fruits as $fruit ): ?>
-   <li> <?php echo $fruit; ?> </li>
-   <?php endforeach; ?>
-   
-</ul>
 </body>
-</html>
+</html>#project-one-2025

@@ -1,0 +1,59 @@
+
+body {
+    font-family: "Open Sans", sans-serif;
+
+  }
+  h1{
+    font-size: 50px;
+  }
+  h2{
+    font-size: 40px;
+  }
+  .flexible-container{
+    padding:5%;
+    display:flex;
+   
+  }
+  .half-width{
+    width:50%;
+  }
+  img{
+    width:80%;
+    border-radius: 50%;
+  }
+  .link{
+    text-decoration:none;
+    padding: 10px 50px;
+    border-radius: 10px;
+    background-image: linear-gradient(blue, blueviolet);
+    color:white;
+    font-weight:700;
+  }
+
+  .top-banner{
+    background-image: url(images/allison-saeng-PNygokR4vW4-unsplash.jpg);
+    background-reapet: no-reapet;
+  }
+  
+  .text-white{
+    color:white
+  }
+  .specialize-head{
+    text-align: center;
+    padding: 0 20%;
+  }
+ .parent{
+  display:flex;
+  padding: 0 10%;
+ }
+ .child{
+  box-shadow: 10px 5px 40px black;
+  margin: 2%;
+  padding: 50px;
+  border-radius: 0 20px 50px 0;
+  border-left: 5px solid ;
+  border-image: linear-gradient(blue,cyan) 0 100%;
+ }
+ footer{
+  text-align:center;
+ }#project-one-2025
