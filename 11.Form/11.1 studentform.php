@@ -17,6 +17,8 @@
         <?php
         $name = $email = $phone /*= $dob = $gender = $religion = $photo*/ = '';
         $students = [];
+        $errors = [];
+        $success = "";
 
         if( $_SERVER["REQUEST_METHOD"] =="POST" && isset($_POST['submit'])){
             $name = $_POST['name'];
@@ -29,14 +31,14 @@
 
             if(session_status() == PHP_SESSION_NONE){
             session_start();
-
-
             }
+
             if( !isset($_SESSION['students'])){
                 $_SESSION['students'] = [];
             }
 
-            if( !empty($name) && !empty($email) && !empty($phone) /*&& !empty($dob) && !empty($gender) && !empty($religion) && !empty($photo)*/){
+            if(!empty($name) && !empty($email) && !empty($phone) /*&& !empty($dob) && !empty($gender) && !empty($religion) &&!empty($photo)*/) {
+                
                 $newStudent = [
                     'name' => $name,
                     'email' => $email,
@@ -50,27 +52,69 @@
                 array_push($_SESSION['students'], $newStudent);
             }
         }
+
         if(isset($_SESSION['students'] )){
             $students = $_SESSION['students'];
         }
-       ?>
+
+            if ( empty($name) ){
+                
+                $errors['name'] = 'Name is required';
+            }
+
+            if ( empty($email) ){
+                
+                $errors['email'] = 'Email is required';
+            } elseif ( !filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $errors['email'] = "Invalid email format";
+            }
+
+            if ( empty($phone) ){
+                
+                $errors['phone'] = 'phone number is required';
+            }
+
+            if ( empty($errors) && !empty($name) && !empty($email) && !empty($phone))
+            $success = "New Student added successfully!";
+
+        ?>
+
+
         <div class="form-container">
 
-            <form method="POST" action="" >
+            <?php if ( isset($success) ): ?>
+                <p style="color: green;"><?php echo $success ?></p>
+            <?php endif; ?>
+
+
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+
                 <div class="form-group">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" value="Enter Name" required>
+                    <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name);?>" required >
                 </div>
-                
+
+                <?php if ( isset($errors['name']) ): ?>
+                    <p style="color:red;"><?php echo $errors['name']; ?></p>
+                <?php endif; ?>
+
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="Enter Email" required>
+                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email);?>" required>
                 </div>
+
+                <?php if ( isset($errors['email']) ): ?>
+                    <p style="color:red;"><?php echo $errors['email']; ?></p>
+                <?php endif; ?>
                 
                 <div class="form-group">
                     <label for="phone">Phone</label>
-                    <input type="text" id="phone" name="phone" value="Enter Phone" required>
+                    <input type="text" id="phone" name="phone" value="<?php echo htmlspecialchars($phone);?>" required>
                 </div>
+
+                <?php if ( isset($errors['phone']) ): ?>
+                    <p style="color:red;"><?php echo $errors['phone']; ?></p>
+                <?php endif; ?>
 
                 <!-- <div class="form-group">
                     <label for="dob">Date of Birth</label>
@@ -184,8 +228,12 @@
                     <td>Hindu</td>
                     <td>Photo</td> 
                 </tr> -->
+                
+
+                <!-- jodi kono submission na thake -->
 
                 <?php if( empty($students) ): ?>
+                    
                     <tr>
                         <td>Student Name 2</td>
                         <td>student2@example.com</td>
@@ -200,24 +248,28 @@
                         <td>Student Name 3</td>
                         <td>student3@example.com</td>
                         <td>345-678-9012</td>
-                        <td>2004-12-10</td>
+                        <!-- <td>2004-12-10</td> -->
                         <!-- <td>Female</td>
                         <td>Hindu</td>
                         <td>Photo</td>  -->
-                    </tr>
-                <?php else: ?>
+                    </tr>;
+               
+                    <!-- submit kora data dakhano -->
+                    <?php else:?>
                     <?php foreach( $students as $student ): ?>
+                        
                         <tr>
-                            <td><?php echo $student['name']; ?></td>
-                            <td><?php echo $student['email']; ?></td>
-                            <td><?php echo $student['phone']; ?></td>
+                            <td><?php echo htmlspecialchars($student['name']); ?></td>
+                            <td><?php echo htmlspecialchars($student['email']); ?></td>
+                            <td><?php echo htmlspecialchars($student['phone']); ?></td>
                             <!-- <td><?php echo $student['dob']; ?></td>
                             <td><?php echo $student['gender']; ?></td>
                             <td><?php echo $student['religion']; ?></td>
                             <td><?php echo $student['photo']; ?></td> -->
                         </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                
+                  <?php endforeach; ?>
+               <?php endif; ?>
                         
             </tbody>
         </table>
