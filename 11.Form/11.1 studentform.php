@@ -1,4 +1,9 @@
-
+<?php
+    if( isset($_GET['accept_cookie']) ){
+        setcookie('cookie_accepted', 'yes', time() + ( 86400 * 30 ), "/");
+        exit;
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -303,5 +308,29 @@
             </tbody>
         </table>
     </div>
+    <?php if( !isset($_COOKIE['cookie_accepted']) ): ?>
+        
+        <!-- cookie box -->
+
+        <div class="cookie-box" id="cookieBox">
+            <div>
+                <p>
+                    We use cookie to get better experience for visiting our website. Will you accept?
+                </p>
+            </div>
+            <div>
+                <button oneclick="acceptCookie()">Allow</button>
+            </div>
+
+        </div>
+    <?php endif; ?>
+
+    <script>
+        function acceptCookie() {
+            fetch('?accept_cookie=true').then(() => {
+                document.getElementById('cookieBox').style.display = 'none';
+            });
+        }
+    </script>
 </body>
 </html>
