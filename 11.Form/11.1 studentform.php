@@ -319,7 +319,7 @@
                 </p>
             </div>
             <div>
-                <button oneclick="acceptCookie()">Allow</button>
+                <button onclick="acceptCookie()">Allow</button>
             </div>
 
         </div>
